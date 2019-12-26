@@ -1,11 +1,23 @@
 import React from "react";
 import { ListGroup } from "react-bootstrap";
 
-const TodoItem = () => {
+const TodoItem = props => {
+  const completedStyles = {
+    fontStyle: "italic",
+    color: "#cdcdcd",
+    textDecoration: "line-through"
+  };
+
   return (
-    <ListGroup.Item variant="info">
-      <input type="checkbox" />
-      <p>To do 1</p>
+    <ListGroup.Item>
+      <input
+        type="checkbox"
+        checked={props.item.completed}
+        onChange={() => props.handleChange(props.item.id)}
+      />
+      <p style={props.item.completed ? completedStyles : null}>
+        {props.item.task}
+      </p>
     </ListGroup.Item>
   );
 };
